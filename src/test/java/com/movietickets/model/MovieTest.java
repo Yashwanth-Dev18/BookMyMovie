@@ -19,4 +19,10 @@ public class MovieTest {
     assertThrows(IllegalArgumentException.class, () -> new Movie(3, "", 120, "Action"));
   }
 
+  @Test
+  void testNegativeDurationThrowsException() {
+    assertThrows(IllegalArgumentException.class, () -> new Movie(4, "The Dark Knight", -60, "Action"));
+  }
+
+
 }
