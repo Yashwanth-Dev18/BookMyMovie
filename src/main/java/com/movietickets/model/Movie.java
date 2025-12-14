@@ -38,4 +38,13 @@ public class Movie {
     return genre;
   }
   
+  @Override
+  public String toString() {
+    return "Movie{" +
+      "id=" + id +
+      ", title='" + title + '\'' +
+      ", duration=" + duration +
+      ", genre='" + genre + '\'' +
+      '}';
+  }
 }
