@@ -1,0 +1,60 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+    id 'application'
+}
+
+group = 'com.movietickets'
+version = '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.3.1'
+    
+    // For console UI
+    implementation 'org.jline:jline:3.21.0'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacoco {
+    toolVersion = "0.8.9"
+    reportsDirectory = layout.buildDirectory.dir('jacoco-reports')
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = false
+    }
+    
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                '**/ui/**',
+                '**/Main.class'
+            ])
+        }))
+    }
+}
+
+application {
+    mainClass = 'com.movietickets.Main'
+}

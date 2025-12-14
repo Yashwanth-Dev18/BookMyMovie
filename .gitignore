@@ -1,0 +1,27 @@
+# Build outputs
+build/
+out/
+bin/
+*.class
+*.jar
+
+# Gradle
+.gradle/
+gradle-app.setting
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+
+# Coverage reports
+jacoco-reports/
+coverage/
+
+# Docker
+docker-compose.override.yml
+
+# OS
+.DS_Store
+Thumbs.db

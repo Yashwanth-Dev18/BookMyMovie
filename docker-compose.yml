@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  movie-tickets:
+    build: .
+    container_name: movie-ticket-booking
+    volumes:
+      - ./coverage-output:/coverage-report
+    stdin_open: true
+    tty: true
