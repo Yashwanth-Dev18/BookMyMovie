@@ -8,6 +8,10 @@ public class Movie {
   private final String genre;
 
   public Movie(int id, String title, int duration, String genre) {
+    if (title == null || title.isEmpty()) {
+      throw new IllegalArgumentException("Title cannot be null");
+    }
+
     this.id = id;
     this.title = title;
     this.duration = duration;
