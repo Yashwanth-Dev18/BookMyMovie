@@ -1,5 +1,6 @@
 package com.movietickets.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class TheatreTest {
@@ -11,5 +12,5 @@ public class TheatreTest {
     assertEquals("Screen 1", theatre.getName());
     assertEquals(100, theatre.getCapacity());
   }
-  
+
 }
