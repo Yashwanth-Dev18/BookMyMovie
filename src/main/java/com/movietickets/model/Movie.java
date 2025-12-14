@@ -12,6 +12,10 @@ public class Movie {
       throw new IllegalArgumentException("Title cannot be null");
     }
 
+    if (duration <= 0) {
+      throw new IllegalArgumentException("Duration must be positive");
+   }
+
     this.id = id;
     this.title = title;
     this.duration = duration;
