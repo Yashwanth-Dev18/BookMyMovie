@@ -14,4 +14,9 @@ public class MovieTest {
     assertEquals("Sci-Fi", movie.getGenre());
   }
 
+  @Test
+  void testEmptyTitleThrowsException() {
+    assertThrows(IllegalArgumentException.class, () -> new Movie(3, "", 120, "Action"));
+  }
+
 }
