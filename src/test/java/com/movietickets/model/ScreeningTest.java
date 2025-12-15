@@ -16,5 +16,8 @@ public class ScreeningTest {
     Screening screening = new Screening(1, movie, theater, showTime);
 
     assertEquals(1, screening.getId());
+    assertEquals(movie, screening.getMovie());
+    assertEquals(theater, screening.getTheater());
+    assertEquals(showTime, screening.getShowTime());
   }
 }

@@ -1,0 +1,33 @@
+package com.movietickets.model;
+
+import java.time.LocalDateTime;
+
+public class Screening {
+  private final int id;
+  private final Movie movie;
+  private final Theater theater;
+  private final LocalDateTime showTime;
+
+  public Screening(int id, Movie movie, Theater theater, LocalDateTime showTime) {
+    this.id = id;
+    this.movie = movie;
+    this.theater = theater;
+    this.showTime = showTime;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public Movie getMovie() {
+    return movie;
+  }
+
+  public Theater getTheater() {
+    return theater;
+  }
+
+  public LocalDateTime getShowTime() {
+    return showTime;
+  }
+}
