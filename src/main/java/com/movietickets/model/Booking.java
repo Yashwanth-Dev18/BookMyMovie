@@ -10,6 +10,15 @@ public class Booking {
 
   public Booking(int id, Screening screening, List<String> seats, String customerEmail) {
 
+    validateInput(screening, seats, customerEmail);
+
+    this.id = id;
+    this.screening = screening;
+    this.seats = seats;
+    this.customerEmail = customerEmail;
+  }
+
+  private void validateInput(Screening screening, List<String> seats, String customerEmail) {
     if (screening == null) {
       throw new IllegalArgumentException("Screening cannot be null");
     }
@@ -21,11 +30,6 @@ public class Booking {
     if (customerEmail == null || customerEmail.trim().isEmpty()) {
       throw new IllegalArgumentException("Customer email cannot be empty");
     }
-    
-    this.id = id;
-    this.screening = screening;
-    this.seats = seats;
-    this.customerEmail = customerEmail;
   }
 
   public int getId() {
