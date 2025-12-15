@@ -55,4 +55,21 @@ public class ScreeningTest {
     });
   }
 
+  @Test
+  void testScreeningToString() {
+    Movie movie = new Movie(1, "Inception", 148, "Sci-Fi");
+    Theater theater = new Theater(1, "Screen 1", 100);
+    LocalDateTime showTime = LocalDateTime.of(2024, 1, 15, 18, 30);
+
+    Screening screening = new Screening(1, movie, theater, showTime);
+    String result = screening.toString();
+
+    // Should contain movie title
+    assertTrue(result.contains("Inception"));
+    // Should contain theater name
+    assertTrue(result.contains("Screen 1"));
+    // Should contain time
+    assertTrue(result.contains("18:30"));
+  }
+
 }
