@@ -48,4 +48,9 @@ public class Booking {
     return customerEmail;
   }
 
+  public double calculateTotalPrice() {
+    double pricePerSeat = 100.0; // 100 SEK per seat
+    return seats.size() * pricePerSeat;
+  }
+
 }
