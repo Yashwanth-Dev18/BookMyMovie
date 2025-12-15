@@ -18,6 +18,10 @@ public class Booking {
       throw new IllegalArgumentException("Seats cannot be empty");
     }
 
+    if (customerEmail == null || customerEmail.trim().isEmpty()) {
+      throw new IllegalArgumentException("Customer email cannot be empty");
+    }
+    
     this.id = id;
     this.screening = screening;
     this.seats = seats;
