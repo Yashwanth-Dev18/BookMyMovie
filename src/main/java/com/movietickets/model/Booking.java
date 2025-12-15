@@ -14,6 +14,10 @@ public class Booking {
       throw new IllegalArgumentException("Screening cannot be null");
     }
 
+    if (seats == null || seats.isEmpty()) {
+      throw new IllegalArgumentException("Seats cannot be empty");
+    }
+
     this.id = id;
     this.screening = screening;
     this.seats = seats;
