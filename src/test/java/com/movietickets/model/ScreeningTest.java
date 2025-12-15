@@ -72,4 +72,24 @@ public class ScreeningTest {
     assertTrue(result.contains("18:30"));
   }
 
+  @Test
+  void testScreeningEqualsAndHashCode() {
+    Movie movie1 = new Movie(1, "Movie 1", 120, "Action");
+    Movie movie2 = new Movie(2, "Movie 2", 90, "Comedy");
+    Theater theater1 = new Theater(1, "Screen 1", 100);
+    Theater theater2 = new Theater(2, "Screen 2", 50);
+    LocalDateTime time = LocalDateTime.now().plusDays(1);
+
+    Screening screening1 = new Screening(1, movie1, theater1, time);
+    Screening screening2 = new Screening(1, movie2, theater2, time.plusDays(1));
+    Screening screening3 = new Screening(2, movie1, theater1, time);
+
+    // Same ID should be equal
+    assertEquals(screening1, screening2);
+    // Different ID should not be equal
+    assertNotEquals(screening1, screening3);
+    // Same ID should have same hash code
+    assertEquals(screening1.hashCode(), screening2.hashCode());
+  }
+
 }
