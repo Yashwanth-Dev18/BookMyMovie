@@ -47,4 +47,13 @@ public class Screening {
   public LocalDateTime getShowTime() {
     return showTime;
   }
+
+  @Override
+  public String toString() {
+    return String.format("%s at %s - %s",
+        movie.getTitle(),
+        showTime.toLocalTime(),
+        theater.getName());
+  }
+
 }
