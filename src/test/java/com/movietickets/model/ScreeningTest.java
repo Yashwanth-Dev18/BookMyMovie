@@ -32,4 +32,15 @@ public class ScreeningTest {
     });
   }
 
+  @Test
+  void testScreeningWithNullTheaterThrowsException() {
+    Movie movie = new Movie(1, "Inception", 148, "Sci-Fi");
+    Theater theater = null;
+    LocalDateTime showTime = LocalDateTime.now().plusDays(1);
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      new Screening(1, movie, theater, showTime);
+    });
+  }
+
 }
