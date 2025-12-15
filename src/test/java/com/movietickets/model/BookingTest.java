@@ -50,24 +50,38 @@ public class BookingTest {
     });
   }
 
-
   @Test
-void testBookingWithInvalidEmailThrowsException() {
+  void testBookingWithInvalidEmailThrowsException() {
     Movie movie = new Movie(1, "Inception", 148, "Sci-Fi");
     Theater theater = new Theater(1, "Screen 1", 100);
     LocalDateTime showTime = LocalDateTime.now().plusDays(1);
     Screening screening = new Screening(1, movie, theater, showTime);
-    
+
     List<String> seats = Arrays.asList("A1", "A2");
-    
+
     // Test empty email
     assertThrows(IllegalArgumentException.class, () -> {
-        new Booking(1, screening, seats, "");
+      new Booking(1, screening, seats, "");
     });
-    
+
     // Test null email
     assertThrows(IllegalArgumentException.class, () -> {
-        new Booking(1, screening, seats, null);
+      new Booking(1, screening, seats, null);
     });
-}
+  }
+
+  @Test
+  void testCalculateTotalPrice() {
+    Movie movie = new Movie(1, "Inception", 148, "Sci-Fi");
+    Theater theater = new Theater(1, "Screen 1", 100);
+    LocalDateTime showTime = LocalDateTime.now().plusDays(1);
+    Screening screening = new Screening(1, movie, theater, showTime);
+
+    List<String> seats = Arrays.asList("A1", "A2", "A3"); // 3 seats
+
+    Booking booking = new Booking(1, screening, seats, "john@email.com");
+
+    // Price should be: 3 seats * 100 SEK each = 300 SEK
+    assertEquals(300, booking.calculateTotalPrice());
+  }
 }
