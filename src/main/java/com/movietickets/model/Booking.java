@@ -53,4 +53,14 @@ public class Booking {
     return seats.size() * pricePerSeat;
   }
 
+  @Override
+  public String toString() {
+    return String.format("Booking #%d: %s - Seats: %s - Customer: %s - Total: %.2f SEK",
+        id,
+        screening.getMovie().getTitle(),
+        String.join(", ", seats),
+        customerEmail,
+        calculateTotalPrice());
+  }
+
 }
