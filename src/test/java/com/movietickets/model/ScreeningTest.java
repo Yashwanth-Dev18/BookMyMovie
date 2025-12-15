@@ -20,4 +20,16 @@ public class ScreeningTest {
     assertEquals(theater, screening.getTheater());
     assertEquals(showTime, screening.getShowTime());
   }
+
+  @Test
+  void testScreeningWithNullMovieThrowsException() {
+    Movie movie = null;
+    Theater theater = new Theater(1, "Screen 1", 100);
+    LocalDateTime showTime = LocalDateTime.now().plusDays(1);
+
+    assertThrows(IllegalArgumentException.class, () -> {
+      new Screening(1, movie, theater, showTime);
+    });
+  }
+
 }
