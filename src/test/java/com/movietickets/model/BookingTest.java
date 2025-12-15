@@ -104,4 +104,23 @@ public class BookingTest {
     assertEquals(booking1.hashCode(), booking2.hashCode());
   }
 
+  
+  @Test
+  void testCreateCopyWithDifferentSeats() {
+    Movie movie = new Movie(1, "Inception", 148, "Sci-Fi");
+    Theater theater = new Theater(1, "Screen 1", 100);
+    LocalDateTime showTime = LocalDateTime.now().plusDays(1);
+    Screening screening = new Screening(1, movie, theater, showTime);
+
+    List<String> originalSeats = Arrays.asList("A1", "A2");
+    List<String> newSeats = Arrays.asList("B1", "B2", "B3");
+
+    Booking original = new Booking(1, screening, originalSeats, "john@email.com");
+    Booking copy = original.createCopyWithDifferentSeats(newSeats, "jane@email.com");
+
+    assertNotEquals(original.getId(), copy.getId());
+    assertEquals(original.getScreening(), copy.getScreening());
+    assertEquals(newSeats, copy.getSeats());
+    assertEquals("jane@email.com", copy.getCustomerEmail());
+  }
 }
