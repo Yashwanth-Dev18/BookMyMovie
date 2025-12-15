@@ -9,6 +9,11 @@ public class Booking {
   private final String customerEmail;
 
   public Booking(int id, Screening screening, List<String> seats, String customerEmail) {
+
+    if (screening == null) {
+      throw new IllegalArgumentException("Screening cannot be null");
+    }
+
     this.id = id;
     this.screening = screening;
     this.seats = seats;
@@ -30,5 +35,5 @@ public class Booking {
   public String getCustomerEmail() {
     return customerEmail;
   }
-  
+
 }
