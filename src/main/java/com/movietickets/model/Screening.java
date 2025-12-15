@@ -10,6 +10,15 @@ public class Screening {
 
   public Screening(int id, Movie movie, Theater theater, LocalDateTime showTime) {
 
+    validateInput(movie, theater, showTime);
+
+    this.id = id;
+    this.movie = movie;
+    this.theater = theater;
+    this.showTime = showTime;
+  }
+
+  private void validateInput(Movie movie, Theater theater, LocalDateTime showTime) {
     if (movie == null) {
       throw new IllegalArgumentException("Movie cannot be null");
     }
@@ -21,11 +30,6 @@ public class Screening {
     if (showTime == null) {
       throw new IllegalArgumentException("Show time cannot be null");
     }
-
-    this.id = id;
-    this.movie = movie;
-    this.theater = theater;
-    this.showTime = showTime;
   }
 
   public int getId() {
