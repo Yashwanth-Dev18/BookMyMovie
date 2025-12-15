@@ -1,6 +1,7 @@
 package com.movietickets.model;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Booking {
   private final int id;
@@ -61,6 +62,21 @@ public class Booking {
         String.join(", ", seats),
         customerEmail,
         calculateTotalPrice());
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Booking booking = (Booking) o;
+    return id == booking.id;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 
 }
