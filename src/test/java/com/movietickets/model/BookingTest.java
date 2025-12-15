@@ -84,4 +84,24 @@ public class BookingTest {
     // Price should be: 3 seats * 100 SEK each = 300 SEK
     assertEquals(300, booking.calculateTotalPrice());
   }
+
+  @Test
+  void testBookingEqualsAndHashCode() {
+    Movie movie = new Movie(1, "Inception", 148, "Sci-Fi");
+    Theater theater = new Theater(1, "Screen 1", 100);
+    LocalDateTime showTime = LocalDateTime.now().plusDays(1);
+    Screening screening1 = new Screening(1, movie, theater, showTime);
+    Screening screening2 = new Screening(2, movie, theater, showTime.plusDays(1));
+
+    List<String> seats = Arrays.asList("A1", "A2");
+
+    Booking booking1 = new Booking(1, screening1, seats, "john@email.com");
+    Booking booking2 = new Booking(1, screening2, seats, "different@email.com");
+    Booking booking3 = new Booking(2, screening1, seats, "john@email.com");
+
+    assertEquals(booking1, booking2); // Same ID
+    assertNotEquals(booking1, booking3); // Different ID
+    assertEquals(booking1.hashCode(), booking2.hashCode());
+  }
+
 }
