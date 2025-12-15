@@ -23,6 +23,6 @@ public class BookingTest {
         assertEquals(1, booking.getId());
         assertEquals(screening, booking.getScreening());
         assertEquals(seats, booking.getSeats());
-        assertEquals("john@email.com", booking.getEmail());
+        assertEquals("john@email.com", booking.getCustomerEmail());
     }
 }
