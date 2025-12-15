@@ -79,4 +79,13 @@ public class Booking {
     return Objects.hash(id);
   }
 
+
+  public Booking createCopyWithDifferentSeats(List<String> newSeats, String newEmail) {
+    return new Booking(
+        this.id + 1000, // Different ID for the copy
+        this.screening,
+        newSeats,
+        newEmail);
+  }
+
 }
