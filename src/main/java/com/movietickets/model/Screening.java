@@ -1,6 +1,7 @@
 package com.movietickets.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Screening {
   private final int id;
@@ -54,6 +55,21 @@ public class Screening {
         movie.getTitle(),
         showTime.toLocalTime(),
         theater.getName());
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    Screening screening = (Screening) o;
+    return id == screening.id;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id);
   }
 
 }
