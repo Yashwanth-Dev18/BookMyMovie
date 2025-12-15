@@ -22,4 +22,11 @@ public class TheaterTest {
     });
   }
 
+  @Test
+  void testEmptyNameThrowsException() {
+    assertThrows(IllegalArgumentException.class, () -> {
+      new Theater(1, "", 100);
+    });
+  }
+
 }
