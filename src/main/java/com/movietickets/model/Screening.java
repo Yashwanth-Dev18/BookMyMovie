@@ -72,4 +72,12 @@ public class Screening {
     return Objects.hash(id);
   }
 
+  public Screening createCopyWithNewTime(LocalDateTime newTime) {
+    return new Screening(
+        this.id + 1000, // Different ID for the copy
+        this.movie,
+        this.theater,
+        newTime);
+  }
+
 }

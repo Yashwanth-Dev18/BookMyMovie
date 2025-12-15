@@ -92,4 +92,22 @@ public class ScreeningTest {
     assertEquals(screening1.hashCode(), screening2.hashCode());
   }
 
+  @Test
+  void testCreateScreeningCopy() {
+    Movie movie = new Movie(1, "Inception", 148, "Sci-Fi");
+    Theater theater = new Theater(1, "Screen 1", 100);
+    LocalDateTime originalTime = LocalDateTime.of(2024, 1, 15, 18, 30);
+    LocalDateTime newTime = LocalDateTime.of(2024, 1, 16, 20, 0);
+
+    Screening original = new Screening(1, movie, theater, originalTime);
+
+    // Create a copy with different time
+    Screening copy = original.createCopyWithNewTime(newTime);
+
+    assertNotEquals(original.getId(), copy.getId());
+    assertEquals(original.getMovie(), copy.getMovie());
+    assertEquals(original.getTheater(), copy.getTheater());
+    assertEquals(newTime, copy.getShowTime());
+  }
+
 }
