@@ -7,6 +7,10 @@ public class Theater {
   private final int capacity;
   
   public Theater(int id, String name, int capacity) {
+    if (capacity <= 0) {
+      throw new IllegalArgumentException("Capacity must be positive");
+    }
+
     this.id = id;
     this.name = name;
     this.capacity = capacity;
