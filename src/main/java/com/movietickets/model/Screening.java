@@ -14,6 +14,10 @@ public class Screening {
       throw new IllegalArgumentException("Movie cannot be null");
     }
 
+    if (theater == null) {
+      throw new IllegalArgumentException("Theater cannot be null");
+    }
+
     this.id = id;
     this.movie = movie;
     this.theater = theater;
