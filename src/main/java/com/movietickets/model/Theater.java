@@ -11,6 +11,10 @@ public class Theater {
       throw new IllegalArgumentException("Capacity must be positive");
     }
 
+    if (name == null || name.isEmpty()) {
+      throw new IllegalArgumentException("Name cannot be null");
+    }
+    
     this.id = id;
     this.name = name;
     this.capacity = capacity;
