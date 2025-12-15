@@ -9,6 +9,11 @@ public class Screening {
   private final LocalDateTime showTime;
 
   public Screening(int id, Movie movie, Theater theater, LocalDateTime showTime) {
+
+    if (movie == null) {
+      throw new IllegalArgumentException("Movie cannot be null");
+    }
+
     this.id = id;
     this.movie = movie;
     this.theater = theater;
