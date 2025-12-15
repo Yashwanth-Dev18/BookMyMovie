@@ -49,4 +49,25 @@ public class BookingTest {
       new Booking(1, screening, emptySeats, "john@email.com");
     });
   }
+
+
+  @Test
+void testBookingWithInvalidEmailThrowsException() {
+    Movie movie = new Movie(1, "Inception", 148, "Sci-Fi");
+    Theater theater = new Theater(1, "Screen 1", 100);
+    LocalDateTime showTime = LocalDateTime.now().plusDays(1);
+    Screening screening = new Screening(1, movie, theater, showTime);
+    
+    List<String> seats = Arrays.asList("A1", "A2");
+    
+    // Test empty email
+    assertThrows(IllegalArgumentException.class, () -> {
+        new Booking(1, screening, seats, "");
+    });
+    
+    // Test null email
+    assertThrows(IllegalArgumentException.class, () -> {
+        new Booking(1, screening, seats, null);
+    });
+}
 }
