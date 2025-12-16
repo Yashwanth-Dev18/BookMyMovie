@@ -23,4 +23,9 @@ public class App {
         ConsoleUI ui = new ConsoleUI(bookingService);
         ui.start();
     }
+    
+    // Test helper method - doesn't start UI
+    public static String getStartupMessage() {
+        return "Starting Movie Ticket Booking System...";
+    }
 }
