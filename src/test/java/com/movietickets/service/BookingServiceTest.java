@@ -63,4 +63,88 @@ public class BookingServiceTest {
     verify(paymentService).processPayment(200.0, customerEmail);
     verify(bookingRepository).save(any(Booking.class));
   }
+
+  @Test
+  void testCreateBookingWithPaymentFailure() {
+    List<String> seats = Arrays.asList("A1", "A2");
+    String customerEmail = "john@email.com";
+
+    // Mock payment service to FAIL
+    when(paymentService.processPayment(200.0, customerEmail))
+        .thenReturn(false);
+
+    // Should throw exception when payment fails
+    RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+      bookingService.createBooking(testScreening, seats, customerEmail);
+    });
+
+    assertEquals("Payment failed", exception.getMessage());
+
+    // Verify repository was NOT called
+    verify(bookingRepository, never()).save(any(Booking.class));
+  }
+
+  @Test
+  void testCreateBookingWithInvalidInput() {
+    // Test null screening
+    assertThrows(IllegalArgumentException.class, () -> {
+      bookingService.createBooking(null, Arrays.asList("A1"), "john@email.com");
+    });
+
+    // Test empty seats
+    assertThrows(IllegalArgumentException.class, () -> {
+      bookingService.createBooking(testScreening, Arrays.asList(), "john@email.com");
+    });
+
+    // Test empty email
+    assertThrows(IllegalArgumentException.class, () -> {
+      bookingService.createBooking(testScreening, Arrays.asList("A1"), "");
+    });
+  }
+
+  @Test
+  void testGetBookingsByCustomer() {
+    String customerEmail = "john@email.com";
+    List<Booking> expectedBookings = Arrays.asList(
+        new Booking(1, testScreening, Arrays.asList("A1"), customerEmail),
+        new Booking(2, testScreening, Arrays.asList("B1"), customerEmail));
+
+    // Mock repository method
+    when(bookingRepository.findByCustomerEmail(customerEmail))
+        .thenReturn(expectedBookings);
+
+    List<Booking> result = bookingService.getBookingsByCustomer(customerEmail);
+
+    assertEquals(2, result.size());
+    verify(bookingRepository).findByCustomerEmail(customerEmail);
+  }
+
+  @Test
+  void testCancelBookingSuccess() {
+    int bookingId = 1;
+
+    // Mock repository delete to return true
+    when(bookingRepository.delete(bookingId))
+        .thenReturn(true);
+
+    boolean result = bookingService.cancelBooking(bookingId);
+
+    assertTrue(result);
+    verify(bookingRepository).delete(bookingId);
+  }
+
+  @Test
+  void testCancelBookingNotFound() {
+    int bookingId = 999;
+
+    // Mock repository delete to return false
+    when(bookingRepository.delete(bookingId))
+        .thenReturn(false);
+
+    boolean result = bookingService.cancelBooking(bookingId);
+
+    assertFalse(result);
+    verify(bookingRepository).delete(bookingId);
+  }
+
 }
