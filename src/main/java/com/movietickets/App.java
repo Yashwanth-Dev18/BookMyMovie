@@ -8,6 +8,10 @@ import com.movietickets.ui.ConsoleUI;
 
 public class App {
     public static void main(String[] args) {
+        startApplication();
+    }
+    
+    public static void startApplication() {
         System.out.println("Starting Movie Ticket Booking System...");
         
         // Dependency Injection setup
