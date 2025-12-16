@@ -14,8 +14,6 @@ public class BookingService {
     this.paymentService = paymentService;
   }
 
-
-
   public Booking createBooking(Screening screening, List<String> seats, String customerEmail) {
     // Validate input
     if (screening == null) {
@@ -28,8 +26,10 @@ public class BookingService {
       throw new IllegalArgumentException("Customer email cannot be empty");
     }
 
-    // Create booking object - this is where I'm doing Dynamic Object Creation!
-    int nextId = 1; // In real app, get from repository
+  
+    int nextId = generateNextId();
+
+    // DYNAMMIC OBJECT CREATION!
     Booking booking = new Booking(nextId, screening, seats, customerEmail);
 
     // Process payment
@@ -44,11 +44,14 @@ public class BookingService {
     return bookingRepository.save(booking);
   }
 
+  private int generateNextId() {
+    // Simple ID generation
+    return (int) (System.currentTimeMillis() % 10000);
+  }
 
   public List<Booking> getBookingsByCustomer(String email) {
     return bookingRepository.findByCustomerEmail(email);
   }
-
 
   public boolean cancelBooking(int bookingId) {
     return bookingRepository.delete(bookingId);
