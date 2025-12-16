@@ -104,7 +104,6 @@ public class BookingTest {
     assertEquals(booking1.hashCode(), booking2.hashCode());
   }
 
-  
   @Test
   void testCreateCopyWithDifferentSeats() {
     Movie movie = new Movie(1, "Inception", 148, "Sci-Fi");
@@ -123,4 +122,26 @@ public class BookingTest {
     assertEquals(newSeats, copy.getSeats());
     assertEquals("jane@email.com", copy.getCustomerEmail());
   }
+
+  @Test
+  void testToStringFormat() {
+    Movie movie = new Movie(1, "Inception", 148, "Sci-Fi");
+    Theater theater = new Theater(1, "Screen 1", 100);
+    LocalDateTime showTime = LocalDateTime.of(2024, 1, 15, 18, 30);
+    Screening screening = new Screening(1, movie, theater, showTime);
+
+    List<String> seats = Arrays.asList("A1", "A2", "A3");
+    Booking booking = new Booking(1, screening, seats, "john@email.com");
+
+    String result = booking.toString();
+
+    // Checking if all parts are present
+    assertTrue(result.contains("Booking #1"));
+    assertTrue(result.contains("Inception"));
+    assertTrue(result.contains("A1, A2, A3"));
+    assertTrue(result.contains("john@email.com"));
+    assertTrue(result.contains("300.00 SEK"));
+    assertTrue(result.contains("Total:"));
+  }
+
 }
