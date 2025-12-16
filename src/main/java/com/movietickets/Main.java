@@ -1,0 +1,22 @@
+package com.movietickets;
+
+import com.movietickets.repository.BookingRepository;
+import com.movietickets.repository.InMemoryBookingRepository;
+import com.movietickets.service.BookingService;
+import com.movietickets.service.PaymentService;
+import com.movietickets.ui.ConsoleUI;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Starting Movie Ticket Booking System...");
+        
+        // Dependency Injection setup
+        BookingRepository bookingRepository = new InMemoryBookingRepository();
+        PaymentService paymentService = new PaymentService();
+        BookingService bookingService = new BookingService(bookingRepository, paymentService);
+        
+        // Create and start UI
+        ConsoleUI ui = new ConsoleUI(bookingService);
+        ui.start();
+    }
+}
