@@ -6,7 +6,7 @@ import com.movietickets.service.BookingService;
 import com.movietickets.service.PaymentService;
 import com.movietickets.ui.ConsoleUI;
 
-public class Main {
+public class App {
     public static void main(String[] args) {
         System.out.println("Starting Movie Ticket Booking System...");
         

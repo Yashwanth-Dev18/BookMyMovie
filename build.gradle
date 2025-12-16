@@ -56,5 +56,5 @@ jacocoTestReport {
 }
 
 application {
-    mainClass = 'com.movietickets.Main'
+    mainClass = 'com.movietickets.App'
 }
